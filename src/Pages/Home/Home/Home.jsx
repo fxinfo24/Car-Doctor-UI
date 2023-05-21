@@ -1,14 +1,16 @@
-import NavBar from "../../Shared/NavBar/NavBar";
+import Footer from "../../Shared/Footer/Footer";
 import About from "../About/About";
 import Banner from "../Banner/Banner";
+import Services from "../Services/Services";
 
 
 const Home = () => {
     return (
         <div>
-            <NavBar></NavBar>
             <Banner></Banner>
             <About></About>
+            <Services></Services>
+            <Footer></Footer>
             <h2>This is home</h2>
         </div>
     );
