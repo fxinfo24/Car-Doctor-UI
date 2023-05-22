@@ -8,7 +8,7 @@ const ServiceCard = ({service}) => {
       <figure>
         <img
           src={img}
-          alt="Shoes"
+          alt=""
         />
       </figure>
       <div className="card-body">

@@ -1,23 +1,37 @@
+import { useContext } from "react";
 import logo from "../../../assets/logo.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../ContextProviders/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 
 const NavBar = () => {
+  const { users, logOutUser } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOutUser()
+      .then()
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const navItems = (
     <>
       <li>
-        <Link to = '/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to = '/about' className="justify-between">About</Link>
+        <Link to="/about" className="justify-between">
+          About
+        </Link>
       </li>
       <li>
-        <Link to = '/service'>Service</Link>
+        <Link to="/service">Service</Link>
       </li>
       <li>
-        <Link to = '/blog'>Blog</Link>
+        <Link to="/blog">Blog</Link>
       </li>
       <li>
-        <Link to = '/contact'>contact</Link>
+        <Link to="/contact">contact</Link>
       </li>
     </>
   );
@@ -53,14 +67,26 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {navItems}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <Link>
-        <button className="btn btn-outline btn-accent">Appointment</button>
+        <Link to = '/appointment'>
+          <button className="btn btn-outline btn-accent">Appointment</button>
         </Link>
+      </div>
+      <div className="w-44 ml-5">
+        {/* Conditional: If user logged in, show profile */}
+
+        {users && <FaUserCircle style={{ fontSize: "41px" }}></FaUserCircle>}
+
+        {/* Conditional: If logged in; Show log Out and so */}
+        {users ? (
+          <button onClick={handleLogout}>Log Out</button>
+        ) : (
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+        )}
       </div>
     </div>
   );
